@@ -1,0 +1,41 @@
+<div class="pausedQuiz" *ngIf="(!status && pauseQuiz) || (!status2 && pauseQuiz)">
+  <div><mat-icon class="warning-icon">warning</mat-icon></div>
+<br>
+<p>There was a problem with your test window. After the problem is resovled click the continue button below to proceed.</p>
+<button class="continue-quiz-button" mat-raised-button color="primary" (click)="continueQuiz()" [disabled]="!status">Continue Quiz</button>
+</div>
+<div *ngIf="(status && status2 && pauseQuiz) || !pauseQuiz" >
+<div class="timer-container">
+  <button class="start-quiz-button" mat-raised-button color="primary" (click)="toggleTimer()">{{this.hide ? 'Show' : 'Hide'}}</button>
+  <div *ngIf="!hide">
+  <p class="paragraph">Time Remaining:</p>
+  <p>{{counter | formatTime}}</p>
+  <p class="paragraph">Connection Status:</p>
+  <mat-icon *ngIf="!status" class="icon">wifi_off</mat-icon>
+  <mat-icon *ngIf="status" class="icon">wifi</mat-icon>
+</div>
+</div>
+<div *ngFor="let question of questions.Questions;let i = index">
+<form [formGroup]="formGroup[i]">
+<mat-card class="card">
+    <mat-card-title>Question {{i+1}}</mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+    <mat-card-content>
+      <p>{{question.Question}}</p>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+    <mat-card-actions>
+        <mat-radio-group
+        class="radio-group" name="{{i}}" formControlName="ctrl">
+        <mat-radio-button class="radio-button" *ngFor="let option of question.Options" [value]="option">
+          {{option.Value}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </mat-card-actions>
+  </mat-card>
+</form>
+</div>
+  <div class="submit-container">
+    <button class="submit-button" mat-raised-button color="primary" (click)="submitQuiz()">Submit</button>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="offline-container" *ngIf="!status">
+    <div>
+    <H2>You are currently offline</H2>
+</div>
+<div><mat-icon class="warning-icon">warning</mat-icon></div>
+<div>
+    <H2>Please keep this window open until internet connectivity has been restored.</H2>
+</div>
+</div>
+<div class="offline-container" *ngIf="status">
+    <div>
+    <H2>You are back online</H2>
+</div>
+<div><mat-icon class="success-icon">check_circle</mat-icon></div>
+<div>
+    <H2>Submitting Quiz</H2>
+</div>
+</div>

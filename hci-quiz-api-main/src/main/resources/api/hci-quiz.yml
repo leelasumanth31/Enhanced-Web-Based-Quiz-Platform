@@ -1,0 +1,183 @@
+openapi: 3.0.1
+info:
+  title: SLAAK Quiz
+  description: Quiz CRUD API.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8082/api
+paths:
+  /user/{userName}/quizResult:
+    get:
+      summary: Get Quiz Result
+      operationId: getQuizResult
+      parameters:
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/QuizResult'
+  /user/postQuestion:
+    post:
+      summary: Post Questions
+      operationId: postQuestions
+      requestBody:
+        description: save questions
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostQuestion'
+        required: true
+      responses:
+        200:
+          description: Questions Added
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/QuizQuestions'
+  /user/{userName}/putAnswers:
+    put:
+      summary: Submit Answers
+      operationId: putAnswers
+      parameters:
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: save questions
+        content:
+          application/json:
+              schema:
+                $ref: '#/components/schemas/SubmitAnswers'
+        required: false
+      responses:
+        200:
+          description: Answer Updated
+      x-codegen-request-body-name: questions
+  /user/{userName}/updateConnectionStatus:
+    put:
+      summary: Update Connection Status
+      operationId: updateConnectionStatus
+      parameters:
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: update connection status
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                UserName:
+                  type: string
+        required: false
+      responses:
+        200:
+          description: ConnectionStatus Updated
+  /user/{userName}/connectionStatus:
+    get:
+      summary: Get Connection Status
+      operationId: getConnectionStatus
+      parameters:
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionStatusResponse'
+components:
+  schemas:
+    PostQuestion:
+      type: object
+      properties:
+        UserName:
+          type: string
+    QuizQuestions:
+      type: object
+      properties:
+        QuizId:
+          type: integer
+          format: int64
+        Questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+    Question:
+      type: object
+      properties:
+        QuestionId:
+          type: integer
+          format: int64
+        QuestionNum:
+          type: integer
+        Question:
+          type: string
+        Options:
+          type: array
+          items:
+            $ref: '#/components/schemas/Option'
+    Option:
+      type: object
+      properties:
+        OptionId:
+          type: integer
+          format: int64
+        Value:
+          type: string
+        Selected:
+          type: boolean
+          default: false
+        Correct:
+          type: boolean
+    SubmitAnswers:
+      type: object
+      properties:
+        TimeTaken:
+          type: integer
+        Answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
+    Answer:
+      type: object
+      properties:
+        OptionId:
+          type: integer
+          format: int64
+    QuizResult:
+      type: object
+      properties:
+        QuizId:
+          type: integer
+        QuestionsTotal:
+          type: integer
+        QuestionsCorrect:
+          type: integer
+        TimeTotal:
+          type: integer
+        Questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+    ConnectionStatusResponse:
+      type: object
+      properties:
+        Status:
+          type: boolean

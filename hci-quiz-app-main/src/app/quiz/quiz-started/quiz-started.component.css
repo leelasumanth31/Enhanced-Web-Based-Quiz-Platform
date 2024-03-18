@@ -1,0 +1,70 @@
+.card {
+    margin: auto;
+    top: 50px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 60%
+}
+
+.submit-button {
+    background-color: #0E6531;
+  }
+
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    align-items: flex-start;
+  }
+  
+  .radio-button {
+    margin-top: 15px;
+    margin: 5px;
+  }
+
+  .submit-container {
+    margin-top: 90px;
+    margin-right: 20px;
+    text-align-last: end;
+    height: 50px;
+  }
+
+  .timer-container {
+    position: sticky!important;
+    top: 0;
+    text-align: center;
+    z-index: 999;
+    margin-left: auto;
+    padding-top: 16px;
+    width: 150px;
+  }
+
+  .start-quiz-button {
+    background-color: #0e6531;
+  }
+
+  .continue-quiz-button {
+    background-color: #0e6531;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .paragraph {
+    margin-top: 10px;
+  }
+
+  .warning-icon {
+    height: 75px;
+    width: 75px;
+    font-size: 60px;
+    color: orange;
+    float: left;
+}
+
+.pausedQuiz {
+  margin: auto;
+  width: 50vh;
+  padding-top: 40vh;
+}

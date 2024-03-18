@@ -1,0 +1,26 @@
+<div class="submission-container">
+  <p>Score: {{questions.QuestionsCorrect}} out of {{questions.QuestionsTotal}}</p>
+  <p>Duration: {{questions.TimeTotal | formatTime}}</p>
+</div>
+<div *ngFor="let question of questions.Questions;let i = index">
+  <form [formGroup]="formGroup[i]">
+  <mat-card class="card">
+      <mat-card-title>Question {{i+1}}</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+      <mat-card-content>
+        <p>{{question.Question}}</p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions>
+          <mat-radio-group
+          class="radio-group" name="{{i}}" formControlName="ctrl">
+          <mat-radio-button class="radio-button" *ngFor="let option of question.Options" [value]="option" [checked]="option.Selected" disabled="true"
+          [ngStyle]="{'color': (option.Correct) ? 'green' : 'red'}"
+          >
+            {{option.Value}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  </div>

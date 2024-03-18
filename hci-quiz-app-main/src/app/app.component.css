@@ -1,0 +1,70 @@
+.mat-primary {
+    background-color: #0E6531;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  text-align: center;
+}
+
+.title-span {
+  flex: 1 1 auto;}
+
+.sidenav-container {
+    height: calc(100vh - 45px);
+  }
+  
+  .sidenav {
+    width: 75px;
+  }
+  
+  .account-icon {
+    margin: 5px;
+    color: white;
+  }
+  
+  .mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    height: 45px;
+    background-color: #0E6531;
+  }
+  
+  .mat-expansion-panel {
+    margin: 0px;
+  }
+  
+  .active-link {
+    color: rgba(244, 126, 40, 1);
+  }
+  
+  /* Absolute Center Spinner */
+  .loading-indicator {
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  
+  /* Transparent Overlay */
+  .loading-indicator:before {
+    content: "";
+    display: block;
+    position: fixed;
+    top: 44px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .mat-drawer {
+    background-color: #0E6531;
+  }
+  

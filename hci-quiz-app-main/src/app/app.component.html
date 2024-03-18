@@ -1,0 +1,31 @@
+<app-load-spinner class="loading-indicator" *ngIf="loading || !loaded "></app-load-spinner>
+<mat-toolbar color="primary">
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span class="title-span">{{title}}</span>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-nav-list>
+      <div>
+        <a mat-list-item>
+          <mat-icon class="account-icon">account_circle</mat-icon>
+        </a>
+        <mat-divider></mat-divider>
+        <a mat-list-item>
+          <mat-icon class="account-icon" [routerLink]="['/quiz']" routerLinkActive="active-link">assignment</mat-icon>
+        </a>
+        <a mat-list-item>
+          <mat-icon class="account-icon" [routerLink]="['/submission']" routerLinkActive="active-link">dashboard</mat-icon>
+        </a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
